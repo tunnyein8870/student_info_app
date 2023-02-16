@@ -1,0 +1,92 @@
+.dynamic-form{
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+.dy-form input{
+    margin-bottom: 15px;
+    width: 22%;
+    margin-left: 7px;
+    height: 35px;
+    border-radius: 5px;
+    text-align-last: right;
+    font-size: medium;
+    padding-right: 5px;
+}
+
+.dy-form{
+    padding-top: 15px;
+    border-bottom: 2px solid black;
+    /* background-color: green; */
+}
+
+.div-heads{
+    height: 35px;
+    width: 100%;
+    /* position: relative; */
+    border-bottom: 2px solid black;
+}
+
+.div-heads div{
+    float: left;
+    width: calc(100% / 4 - 20px);
+    /* align-items: center; */
+    margin-left: 20px;
+}
+
+.btn-dy-form{
+    padding-top: 10px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.add-btn-container{
+    width: 99%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.add-btn-label{
+    font-weight: bolder;
+}
+.add-btn{
+    float: right;
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #c38b8b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.add-btn:hover{
+    background-color: cadetblue;
+}
+
+.del-btn{
+    margin-left: 5px;
+    width: 30px;
+    cursor: pointer;
+    font-size: large;
+    background-color: #afd3f1;
+    color: white;
+    border-color: white;
+}
+
+
+.del-btn:hover{
+    background-color: #12e0b4;
+}
+
+
+  
+  

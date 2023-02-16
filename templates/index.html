@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form.css') }}"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form.css') }}">
+  <meta charset="UTF-8">
+  <title>Student Registration Form </title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/dynamic_form.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if form_type == "update" %}
+  <script>
+    const jsonData = {{ json_data|safe }}
+  </script>
+  {% endif %}
+</head>
+
+<body>
+  <div class="container">
+    <div class="title"><a href="/" style="text-decoration: none;">Student Registration</a></div>
+    <div class="content">
+      <form method="POST" enctype="multipart/form-data"
+        action="{% if form_type == 'update' %} /{{record[0]}}/update {% else %} / {% endif %}">
+        <!-- profile image here -->
+        <div class="circle-container">
+          {% if form_type == 'update' %}
+          {% set image_filename = record[10] %}
+          {% else %}
+          {% set image_filename = pic %}
+          {% endif %}
+          <img id="profile-pic-index" src="{{ url_for('static', filename='uploads/' + image_filename) }}">
+          <input type="file" id="photo-input-index" name="photo" style="display: none;">
+        </div>
+        <div class="circle-container-upload-text">Upload Photo</div>
+
+        <!-- user details start -->
+        <div class="user-details">
+          <!-- id -->
+          {% if form_type == "update" %}
+          <div class="input-box">
+            <span class="details">ID</span>
+            <input type="text" name="ID" placeholder="Enter ID" required disabled value={{record[0]}}>
+          </div>
+          {% endif %}
+          <!-- id -->
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input type="text" name="f_name" placeholder="First Name" required {% if form_type=='update'
+              %}value={{record[1]}}{% endif %}>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" name="l_name" placeholder="Last Name" required {% if form_type=='update'
+              %}value={{record[2]}}{% endif %}>
+          </div>
+          <div class="input-box">
+            <span class="details">NRC Number</span>
+            <input type="text" name="nrc" placeholder="NRC Number" required {% if form_type=='update'
+              %}value={{record[3]}}{% endif %}>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" placeholder="Email" required {% if form_type=='update'
+              %}value={{record[4]}}{% endif %}>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone</span>
+            <input type="text" name="phone" placeholder="Phone" required {% if form_type=='update'
+              %}value={{record[5]}}{% endif %}>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" name="address" placeholder="Address" required {% if form_type=='update'
+              %}value={{record[6]}}{% endif %}>
+          </div>
+
+          <!-- category -->
+          <div class="category">
+            <div class="category-city">
+              <label for="city">City</label>
+              <select class="details" id="city" name="city">
+                {% if form_type == 'update' %}
+                <option value="Yangon" {% if "Yangon"==record[8] %} selected {% endif %}>Yangon</option>
+                <option value="Mandalay" {% if "Mandalay"==record[8] %} selected {% endif %}>Mandalay</option>
+                <option value="Naypyidaw" {% if "Naypyidaw"==record[8] %} selected {% endif %}>Naypyidaw</option>
+                <option value="Myitkyina" {% if "Myitkyina"==record[8] %} selected {% endif %}>Myitkyina</option>
+                <option value="Taunggyi" {% if "Taunggyi"==record[8] %} selected {% endif %}>Taunggyi</option>
+                {% else %}
+                <option>Yangon</option>
+                <option>Mandalay</option>
+                <option>Naypyidaw</option>
+                <option>Myitkyina</option>
+                <option>Taunggyi</option>
+                {% endif %}
+              </select>
+            </div>
+            <div class="category-gender">
+              <label class="gender-label" for="gender">Gender</label>
+              {% if form_type == 'update' %}
+              <input class="gender" type="radio" name="gender" value="Male" {% if form_type=='update'
+                and 'Male'==record[9] %} checked {% endif %}>Male
+              <input class="gender" type="radio" name="gender" value="Female" {% if form_type=='update'
+                and 'Female'==record[9] %} checked {% endif %}>Female
+              {% else %}
+              <input class="gender" type="radio" name="gender" value="Male" checked>Male
+              <input class="gender" type="radio" name="gender" value="Female">Female
+              {% endif %}
+            </div>
+          </div>
+          <!-- category -->
+
+          <!-- gender-details Hobby -->
+          <div class="gender-details">
+            <span id="hob" class="details">Hobby</span>
+            <input class="details-input" type="checkbox" name="hobby" id="reading" value="reading" {% if
+              form_type=='update' and "reading" in soption %} checked {% endif %}>
+            <label class="details-label" for="reading">
+              Reading
+            </label>
+            <input class="details-input2" type="checkbox" name="hobby" id="walking" value="walking" {% if
+              form_type=='update' and "walking" in soption %} checked {% endif %}>
+            <label class="details-labe" for="walking">
+              Walking
+            </label>
+          </div>
+        </div>
+        <!-- user details end -->
+
+        <!-- Subjects and Marks -->
+        <div class="dynamic-form">
+          <div id="btn-dy-form"></div>
+          <div class="div-heads"></div>
+          <!-- {{stu_id}} -->
+          <!-- {{json_data}} -->
+            <input type="hidden" id="stu_id" name="stu_id" value={{stu_id}}>
+            <input type="hidden" id="json_data" name="json_data" value="{{json_data}}">
+            <!-- get student id -->
+            <div id="dy-form" class="{{stu_id}}">
+            </div>
+        </div>
+
+        <div class="button">
+          {% if form_type == "update" %}
+          {% set btn_text = "Update" %}
+          {% else %}
+          {% set btn_text = "Create" %}
+          {% endif %}
+          <input type="submit" value={{btn_text}} style="float: right">
+          <!-- <a href="/index"><input type="button" value="Clear"></a> -->
+        </div>
+        <a href="/">{% if form_type == 'update' %} << Create Page {% else %} Clear {% endif %}</a>
+            <a href="{{ url_for('view_default')}}" style="float: right;">View Student Details >> </a>
+      </form>
+    </div>
+    <hr style="margin-top: 20px;">
+    <hr>
+  </div>
+  <script>
+    document.getElementById("profile-pic-index").addEventListener("click", function () {
+      document.getElementById("photo-input-index").click();
+    });
+    document.getElementById("photo-input-index").addEventListener("change", function () {
+      var reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById("profile-pic-index").src = reader.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    });
+  </script>
+  <script src="/static/dynamic_form.js">
+  </script>
+</body>
+</html>
