@@ -281,26 +281,26 @@ def update(id):
                     (%s , %s, %s, %s, %s)",
                 (maths, arts, physics, year, id))
                 mysql.connection.commit()
-    if len(result) <= len(json_data):
+    if len(json_data) <= len(result) or len(json_data) >= len(result):
         print("update section works")
-        for i, subject in enumerate(json_data):
-                subject_id = subject[0]
-                found = any(subject_id == res_subject[0] for res_subject in result)
-                if not found:
-                    cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
-                    mysql.connection.commit()
         for i, subject in enumerate(result):
             maths = subject[1]
             arts = subject[2]
             physics = subject[3]
             year = subject[4]
             subject_id = subject[0]
-            cur.execute(
-                "UPDATE subjects \
-                SET maths=%s, arts=%s, physics=%s, year=%s \
-                WHERE subject_id=%s",
-                (maths, arts, physics, year, subject_id))
-            mysql.connection.commit()    
+            if not maths == '' or arts == '' or physics == '' or year == '':
+                cur.execute(
+                    "UPDATE subjects \
+                    SET maths=%s, arts=%s, physics=%s, year=%s \
+                    WHERE subject_id=%s",
+                    (maths, arts, physics, year, subject_id))
+                for i, subject in enumerate(json_data):
+                    subject_id = subject[0]
+                    found = any(subject_id == res_subject[0] for res_subject in result)
+                    if not found:
+                        cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
+                mysql.connection.commit()
     f_name, l_name, nrc, email, phone, address, city, gender = [
     request.form.get(field) for field in ['f_name', 'l_name', 'nrc', 'email', 'phone', 'address', 'city', 'gender']]
     opt_hobby = request.form.getlist("hobby")
