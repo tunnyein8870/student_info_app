@@ -295,11 +295,12 @@ def update(id):
                     SET maths=%s, arts=%s, physics=%s, year=%s \
                     WHERE subject_id=%s",
                     (maths, arts, physics, year, subject_id))
-                for i, subject in enumerate(json_data):
-                    subject_id = subject[0]
-                    found = any(subject_id == res_subject[0] for res_subject in result)
-                    if not found:
-                        cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
+            for i, subject in enumerate(json_data):
+                subject_id = subject[0]
+                found = any(subject_id == res_subject[0] for res_subject in result)
+                if not found:
+                    print("delete section works.")
+                    cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
                 mysql.connection.commit()
     f_name, l_name, nrc, email, phone, address, city, gender = [
     request.form.get(field) for field in ['f_name', 'l_name', 'nrc', 'email', 'phone', 'address', 'city', 'gender']]
