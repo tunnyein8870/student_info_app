@@ -4,7 +4,8 @@ Date: 18.Feb.2023
 Installed Packages: faker, mysql.connector
 Author: Tun Tun Nyein
 
-This module will generate data in mysql database
+This module will generate data in mysql database 'students' table
+You can change database name in the constructor.
 Usage: py <filename.py> <number_of_records>
 number_of_records should be the record number you want to input
 """
