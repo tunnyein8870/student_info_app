@@ -12,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if form_type == "update" %}
   <script>
+    // sent jsonData to Backend to manipulate data
     const jsonData = {{ json_data|safe }}
   </script>
   {% endif %}
@@ -134,7 +135,7 @@
           <div class="div-heads"></div>
           <!-- {{stu_id}} -->
           <!-- {{json_data}} -->
-            <input type="hidden" id="stu_id" name="stu_id" value={{stu_id}}>
+            <input type="hidden" id="stu_id" name="stu_id" value="{{stu_id}}">
             <input type="hidden" id="json_data" name="json_data" value="{{json_data}}">
             <!-- get student id -->
             <div id="dy-form" class="{{stu_id}}">
@@ -147,10 +148,12 @@
           {% else %}
           {% set btn_text = "Create" %}
           {% endif %}
-          <input type="submit" value={{btn_text}} style="float: right">
+          <input type="submit" value="{{btn_text}}" style="float: right">
           <!-- <a href="/index"><input type="button" value="Clear"></a> -->
         </div>
+        <!-- if /update, shows Create Page. if / or /index, shows Clear -->
         <a href="/">{% if form_type == 'update' %} << Create Page {% else %} Clear {% endif %}</a>
+        <a href="/{{stu_id}}/export_pdf">{% if form_type == 'update' %} <> {% endif %}</a>
             <a href="{{ url_for('view_default')}}" style="float: right;">View Student Details >> </a>
       </form>
     </div>
