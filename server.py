@@ -1,9 +1,13 @@
-""" before running this flask app, you have to activate venv
-open command prompt, (not powershell)
-$ cd project_folder
-$ py -m venv .
-$ Script/activate
-$ py server.py
+""" 
+Script Name: server.py
+Start Date: 1st.Feb.2023
+Recent Date: 19.Feb.2023
+Author: Tun Tun Nyein
+
+Before running this flask app, you may need to activate venv
+More Python venv documentation https://docs.python.org/3/library/venv.html
+If you found module errors on execution, run
+$pip install <module_name>
 """
 
 
