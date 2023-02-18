@@ -416,7 +416,6 @@ def export_pdf(id):
             pdf.showPage()
         pdf.drawCentredString(300, y, "Subjects")
         pdf.rect(l, y-25, r, 40)
-        # y -= 5
         # subjects data header
         pdf.setFont("Helvetica-Bold", 12)
         print(y)
