@@ -50,8 +50,8 @@ class DataGenerator:
             nrc = self.generate_nrc()
             email = self.limit_email()
             phone = self.faker.phone_number().split('x')[0].strip()
-            address = self.faker.address()
-            city = self.faker.city()
+            address = self.faker.random_element(elements=("Sanchaung", "Mayangone", "Bahan", "Tamwe", "Kyauk Myaung", "Hlaing"))
+            city = self.faker.random_element(elements=("Yangon", "Mandalay", "Myitkyina", "Taunggyi", "Naypyidaw"))
             hobby = self.faker.random_element(elements=("reading", "walking"))
             gender = self.faker.random_element(elements=("male", "female"))
             # If there occurs related to your database table, change INSERT INTO 'students' to your table name.
@@ -74,4 +74,5 @@ if __name__ == "__main__":
         number_of_records = int(sys.argv[1])
         generator = DataGenerator(number_of_records)
         generator.generate_data()
+        
 
