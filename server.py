@@ -1,8 +1,10 @@
-""" 
+""" This is a CRUD Application about student information.
 Script Name: server.py
 Start Date: 1st.Feb.2023
 Recent Date: 19.Feb.2023
 Author: Tun Tun Nyein
+Functions implemented: 
+>> Read, Write, Create, Update, Search, Pagination, Sort, Dynamic Form, Import/Export Excel, Export PDF 
 
 Before running this flask app, you may need to activate venv
 More Python venv documentation https://docs.python.org/3/library/venv.html

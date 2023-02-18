@@ -1,10 +1,9 @@
-"""
+""" This module will create students database that works with the server.py
 Script Name: generate_table.py
 Date: 19.Feb.2023
 Installed Packages: flask, flask_mysqldb
 Author: Tun Tun Nyein
 
-Create students database that is corresponds to server.py
 Change Database name from 'project' to 'students' on app.config['MYSQL_DB] = 'project'
 run $py generate_table.py
 goto browser and enter url, localhost:5500/create_students_table
@@ -18,7 +17,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'project'
+app.config['MYSQL_DB'] = 'flask_students'
 mysql = MySQL(app)
 
 class Create_DB:
