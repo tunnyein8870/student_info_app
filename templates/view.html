@@ -61,8 +61,8 @@
           <div class="excel-form">
             <form id="import-form" action="{{ url_for('import_data') }}" method="POST" enctype="multipart/form-data">
               <input id="file-input" type="file" name="file" accept=".xlsx, .xls, .csv" required hidden>
-              <button class="btn btn-warning rounded-3" id="import-button" type="button">Import</button>
-              <a class="btn" href="{{url_for('export_excel')}}"><button class="btn btn-info rounded-3"
+              <button class="btn btn-secondary rounded-3" id="import-button" type="button">Import</button>
+              <a class="btn" href="{{url_for('export_excel')}}"><button class="btn btn-secondary rounded-3"
                   type="button">Export</button></a>
             </form>
           </div>
@@ -148,7 +148,6 @@
         <a style="margin-left: 20px;" href="{{ url_for('view_last') }}">View Last ⭲</a>
         <p style="color: black; margin-left: 20px;">Total Records </p>
         <p> {{ student|length }}</p>
-
     </div>
 
     <div class="pagi-right me-4">

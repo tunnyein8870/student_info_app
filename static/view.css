@@ -17,6 +17,8 @@ body {
     max-height: 420px;
     display:inline-block;
     overflow: auto;
+    border-bottom: 2px solid black;
+
 }
 
 .pagi-left{
@@ -115,7 +117,7 @@ table.table td i {
     font-size: 14px;
 }
 .pagination {
-    float: right;
+    float: left;
     margin: 0 0 5px;
 }
 .pagination li a {
@@ -218,6 +220,10 @@ table.table td i {
 
 #import-button, #export-button{
     margin: auto;
+}
+
+.pdf-button{
+    margin: right;
 }
 
 .excel-form{
