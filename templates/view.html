@@ -6,113 +6,127 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Student Records</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" type="text/css" href="/static/style.css"> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+
   <!-- container division -->
-  <div class="container">
+  <div class="view-container">
     <div class="table-wrapper">
-      <div class="table-title">
-        <form class="" method="POST">
-          <div class="row d-flex">
-            <div class="col-sm-6">
-              <a href="/view_all" style="text-decoration: none; color: wheat;">
-                <h2>Student <b>Information</b></h2>
-              </a>
-            </div>
-            <a href="/" class="btn btn-success" style="margin-right: 15px;"><i class="material-icons">&#xE147;</i>
-              <span>Add Student</span></a>
-            <a href="{{url_for('view_default')}}" class="btn btn-info">
-              <i class="glyphicon glyphicon-refresh"></i><span style="width: 50px;">Refresh</span>
+      <nav class="navbar navbar-expand-lg bg-primary py-4">
+        <div class="container-fluid">
+          <div>
+            <a class="navbar-brand" style="color: white;" href="/view_all"><b>Student Information</b></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <a href="/" class="btn btn-light mb-2 rounded-3 mb-lg-0 me-2">&#10133; Add
             </a>
-            <div class="col-lg-3">
-              <!-- Search starts -->
+            <form class="d-flex col-lg-3" method="POST">
+              <div class="nav-item">
+                <a href="{{url_for('view_default')}}" class="btn btn-light rounded-3 me-sm-1 me-lg-3"> <span
+                    style="font-weight:bold;color: darkblue; font-size: 16px;">&#x21bb;</span>
+                </a>
+              </div>
               <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Search" value="{{ keyword }}">
               </div>
-              <!-- Search ends -->
-            </div>
-          </div>
-        </form>
-      </div>
+            </form>
 
+          </div>
+        </div>
+      </nav>
       <!-- excel -->
       <div class="excel-container">
         <div class="excel-buttons">
           <div class="excel-form">
             <form id="import-form" action="{{ url_for('import_data') }}" method="POST" enctype="multipart/form-data">
               <input id="file-input" type="file" name="file" accept=".xlsx, .xls, .csv" required hidden>
-              <button class="btn btn-success" id="import-button" type="button">Import</button>
-              <a class="btn btn-dark" href={{url_for("export_excel")}}><button class="btn btn-info" type="button">Export</button></a>
-            </form>   
+              <button class="btn btn-warning rounded-3" id="import-button" type="button">Import</button>
+              <a class="btn" href="{{url_for('export_excel')}}"><button class="btn btn-info rounded-3"
+                  type="button">Export</button></a>
+            </form>
           </div>
         </div>
       </div>
 
       <!-- content-wrapper starts -->
-      <div class="content-wrapper" style="overflow-y: scroll; overflow-x: unset;">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th style="display: flex;">ID
-                <a href={{url_for('sort', sort_field="id" , sort_order='desc' )}} style="margin-left: 3px;">▼</a>
-                <a href={{url_for('sort', sort_field="id" , sort_order='asc' )}}>▲</a>
-              </th>
-              <th>First</th>
-              <th>Last</th>
-              <th>NIC No.</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Hobby</th>
-              <th>City</th>
-              <th>Gender</th>
-              <th>Photo</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody class="student-tbody" id="student-tbody">
-            <!-- data from flask backend -->
-            {% for i in student %}
-            <tr>
-              <td>{{i[0]}}</td>
-              <td>{{i[1]}}</td>
-              <td>{{i[2]}}</td>
-              <td>{{i[3]}}</td>
-              <td>{{i[4]}}</td>
-              <td>{{i[5]}}</td>
-              <td>{{i[6]}}</td>
-              <td>{{i[7]}}</td>
-              <td>{{i[8]}}</td>
-              <td>{{i[9]}}</td>
-              <td>{{i[10]}}</td>
-              <td>
-                <a href="/{{i[0]}}/edit" class="edit"><i class="material-icons" data-toggle="tooltip"
-                    title="Edit">&#xE254;</i></a>
-                <a href="/{{i[0]}}/delete" class="delete"><i class="material-icons" data-toggle="tooltip"
-                    title="Delete">&#xE872;</i></a>
-              </td>
-            </tr>
-            {% endfor %}
-            <!-- !data from flask backend -->
+      <div class="set-overflow" style="overflow-y: hidden; overflow-x: unset;">
+        <div class="content-wrapper">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr class="table-headers">
+                <th class="table-header-id">ID
+                  <a href={{url_for('sort', sort_field="id" , sort_order='desc' )}} style="margin-left: 3px;">▼</a>
+                  <a href={{url_for('sort', sort_field="id" , sort_order='asc' )}}>▲</a>
+                </th>
+                <th>First</th>
+                <th>Last</th>
+                <th>NIC No.</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Hobby</th>
+                <th>City</th>
+                <th>Gender</th>
+                <th>Photo</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="student-tbody" id="student-tbody">
+              <!-- data from flask backend -->
+              {% for i in student %}
+              <tr>
+                <td>{{i[0]}}</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>{{i[4]}}</td>
+                <td>{{i[5]}}</td>
+                <td>{{i[6]}}</td>
+                <td>{{i[7]}}</td>
+                <td>{{i[8]}}</td>
+                <td>{{i[9]}}</td>
+                <td>{{i[10]}}</td>
+                <td>
+                  <a href="/{{i[0]}}/edit" class="edit"><i class="material-icons" data-toggle="tooltip"
+                      title="Edit">&#xE254;</i></a>
+                  <a href="/{{i[0]}}/delete" class="delete"><i class="material-icons" data-toggle="tooltip"
+                      title="Delete">&#xE872;</i></a>
+                </td>
+              </tr>
+              {% endfor %}
+              <!-- !data from flask backend -->
 
-            <!-- data for frontend section -->
-            <!-- <table id="student-dable">
+              <!-- data for frontend section -->
+              <!-- <table id="student-dable">
               <tbody id="student-tbody">
                 Elements can be accessed by JavaScript in crud_sort.js
               </tbody>
             </table> -->
-            <!-- !data for frontend section -->
-          </tbody>
-        </table>
+              <!-- !data for frontend section -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -120,7 +134,7 @@
     <!-- bootstrap table ends -->
 
     <!-- pagination style only starts -->
-    <div class="pagi-left">
+    <div class="pagi-left ms-4 mb-3">
       {% if page > 1 %}
       <a href="{{ url_for('view', page=page-1) }}">
         <p>❮❮</p>
@@ -130,17 +144,18 @@
       {% if page < total_pages %} <a href="{{ url_for('view', page=page+1) }}">
         <p>❯❯</p></a>
         {% endif %}
+        <a style="margin-left: 20px;" href="{{ url_for('view', page=1)}}">View First ⭰</a>
+        <a style="margin-left: 20px;" href="{{ url_for('view_last') }}">View Last ⭲</a>
         <p style="color: black; margin-left: 20px;">Total Records </p>
         <p> {{ student|length }}</p>
+
     </div>
 
-    <div class="pagi-right">
-      <a href="{{ url_for('view', page=1)}}">View First ⭰</a>
-      <a href="{{ url_for('view_last') }}">View Last ⭲</a>
-      <a href="{{ url_for('view_all')}}">View All</a>
+    <div class="pagi-right me-4">
+      <a href="{{ url_for('view_all')}}">View All &#8660;</a>
     </div>
   </div>
-  </div>
+
   <!-- data for frontend -->
   <!-- <script>
   </script>
@@ -150,11 +165,11 @@
     const importButton = document.querySelector('#import-button');
     const fileInput = document.querySelector('#file-input');
     const importForm = document.querySelector('#import-form');
-    
+
     importButton.addEventListener('click', (event) => {
       fileInput.click();
     });
-    
+
     fileInput.addEventListener('change', (event) => {
       if (fileInput.files.length > 0) {
         importForm.submit();
