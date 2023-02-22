@@ -101,21 +101,24 @@ form .category {
 .category label{
     font-weight: 500;
     margin-top: 5px;
+    margin-right: 10px;
 }
+
 .category-city{
     float: right;
     width: calc(48% - 10px);
     display: flex;
+    margin-left: 20px;
 }
 .category-gender{
     display: flex;
     margin-top: 5px;
 }
 .gender-label{
-    margin-right: calc(14% - 10px);
+    padding-right: calc(14% - 15px);
 }
 .gender{
-    margin: 0px 10px;
+    margin: 10px 10px;
     cursor: pointer;
 }
 #city,#gender{
