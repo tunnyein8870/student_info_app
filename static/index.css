@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3px;
+    padding: 10px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 .container {
@@ -77,7 +77,7 @@ form .input-box span.details {
     width: 180px;
 }
 .user-details .input-box input {
-    height: 45px;
+    height: 40px;
     width: 100%;
     outline: none;
     font-size: 16px;
@@ -100,6 +100,7 @@ form .category {
 }
 .category label{
     font-weight: 500;
+    margin-top: 5px;
 }
 .category-city{
     float: right;
@@ -108,6 +109,7 @@ form .category {
 }
 .category-gender{
     display: flex;
+    margin-top: 5px;
 }
 .gender-label{
     margin-right: calc(14% - 10px);
@@ -138,12 +140,12 @@ form .category {
     margin-left: 10px;
 }
 form .button {
-    height: 45px;
-    margin: 30px 0;
+    height: 40px;
+    margin: 10px 0;
 }
 form .button input {
     height: 100%;
-    width: 48%;
+    width: 30%;
     border-radius: 5px;
     border: none;
     color: #fff;

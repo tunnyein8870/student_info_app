@@ -4,7 +4,6 @@
     justify-content: space-between;
     margin: 20px 0 12px 0;
 }
-
 .dy-form input{
     margin-bottom: 15px;
     width: 22%;
@@ -23,7 +22,7 @@
 }
 
 .div-heads{
-    height: 35px;
+    height: 20px;
     width: 100%;
     /* position: relative; */
     border-bottom: 2px solid black;
@@ -37,7 +36,7 @@
 }
 
 .btn-dy-form{
-    padding-top: 10px;
+    padding-top: 5px;
     width: 100%;
     outline: none;
     font-size: 16px;
@@ -49,8 +48,8 @@
 }
 .add-btn-container{
     width: 99%;
-    margin-bottom: 20px;
-    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .add-btn-label{
     font-weight: bolder;
