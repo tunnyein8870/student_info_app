@@ -6,10 +6,92 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Print Preview</title>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='preview.css')}}">
 </head>
+
 <body>
   <div class="container">
-    {{data}}
+    <div class="table-container">
+      <div class="student-div">
+        <label name="student-label" for="student-label">Student Information</label>
+        <div class="image-wrapper">
+          <img src="{{ url_for('static', filename='uploads/' + student_data[10]) }}">
+        </div>
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <td>{{student_data[0]}}</td>
+            </tr>
+            <tr>
+              <th>First Name</th>
+              <td>{{student_data[1]}}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>{{student_data[2]}}</td>
+            </tr>
+            <tr>
+              <th>NRC</th>
+              <td>{{student_data[3]}}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{{student_data[4]}}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{{student_data[5]}}</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>{{student_data[6]}}</td>
+            </tr>
+            <tr>
+              <th>Hobby</th>
+              <td>{{student_data[7]}}</td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>{{student_data[8]}}</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>{{student_data[9]}}</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+        <div class="subject-div">
+          <table id="subject-table" class="subject-table">
+            <thead>
+              <tr>
+                <label id="student-label" class="subject-label" for="subject-label">Subjects & Marks</label>
+              </tr>
+              <tr>
+                <th>Subject ID</th>
+                <th>Marks</th>
+                <th>Arts</th>
+                <th>Physics</th>
+                <th>Year</th>
+              </tr>
+              {% for subjects in subject_data %}
+              <tr class="ths">
+                {% for content in subjects[:5] %}
+                <td>{{content}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </thead>
+          </table>
+        </div>
+        <div class="button-group">
+          <a class="export-a" href="/{{student_data[0]}}/edit"><button type="button">Back</button></a>
+          <a class="edit-a" href="/{{student_data[0]}}/export_pdf"><button type="button">Print</button></a>
+        </div>
+    </div>
   </div>
 </body>
+
 </html>

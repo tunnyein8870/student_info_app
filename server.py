@@ -370,10 +370,13 @@ def export_excel():
 
 @app.route('/<int:id>/print_preview')
 def preveiw(id):
+    """preview function that sends student data to template."""
     cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM subjects WHERE student_id=%s", (id,))
+    subj_data = cur.fetchall()
     cur.execute("SELECT * FROM students WHERE id=%s", (id,))
-    data = cur.fetchall()
-    return render_template('preview.html', data=data)
+    stu_data = cur.fetchone()
+    return render_template('preview.html', student_data=stu_data, subject_data=subj_data)
 
 
 @app.route('/<int:id>/export_pdf')
@@ -405,7 +408,7 @@ def export_pdf(id):
     else:
         print('image url is empty')
         pdf.rect(80, 600, 1.5 * inch, 1.5 * inch, stroke=True, fill=False) # draw a rectangle around the image
-    pdf.setFont("Helvetica", 12)
+    pdf.setFont("Helvetica-Bold", 12)
     y = 550
     x = 80  # left student title
     # students data header
@@ -413,7 +416,7 @@ def export_pdf(id):
     for student in student_info:
         pdf.drawString(x, y, student)
         y -= 30
-    pdf.setFont("Helvetica-Bold", 12)
+    pdf.setFont("Helvetica", 12)
     # students data table
     x = 280  # right student data
     y = 550
@@ -423,13 +426,14 @@ def export_pdf(id):
         pdf.drawString(x, y, str(students_data[info]))
         y -= 30
     # border of student section
-    pdf.rect(l, 50, r, 730, stroke=True, fill=False)
+    # pdf.rect(l, 50, r, 730, stroke=True, fill=False)
     y -= 20
     if subjects_data:
         if y <= 50:  # go to next page
             pdf.showPage()
-        pdf.drawCentredString(300, y, "Subjects")
-        pdf.rect(l, y-25, r, 40)
+        pdf.setFont("Helvetica-Bold", 14)
+        pdf.drawCentredString(300, y, "Subjects & Marks")
+        # pdf.rect(l, y-25, r, 40)
         # subjects data header
         pdf.setFont("Helvetica-Bold", 12)
         print(y)
@@ -449,6 +453,20 @@ def export_pdf(id):
                 pdf.drawString(x_values[i], y, str(item))
             pdf.rect(l, y-5, r, 20, stroke=True, fill=False)
             y -= 20
+    else:
+        pdf.drawCentredString(300, y, "Subjects")
+        pdf.rect(l, y-25, r, 40)
+        # subjects data header
+        pdf.setFont("Helvetica-Bold", 12)
+        print(y)
+        x = 80
+        y -= 20
+        subject_info = ["Subject ID", "Maths", "Arts", "Physics", "Year"]
+        for title in subject_info:
+            pdf.drawString(x, y, title)
+            x += 100
+        pdf.rect(l, y-25, r, 40, stroke=True, fill=False)
+        y -= 20
     pdf.save()
     output.seek(0)
     response = make_response(output.read())
