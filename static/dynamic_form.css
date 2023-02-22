@@ -22,10 +22,11 @@
 }
 
 .div-heads{
-    height: 20px;
+    height: 10px;
     width: 100%;
-    /* position: relative; */
+    position: relative;
     border-bottom: 2px solid black;
+    display: flex;
 }
 
 .div-heads div{

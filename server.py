@@ -368,6 +368,14 @@ def export_excel():
     return r  # Finally return response
 
 
+@app.route('/<int:id>/print_preview')
+def preveiw(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM students WHERE id=%s", (id,))
+    data = cur.fetchall()
+    return render_template('preview.html', data=data)
+
+
 @app.route('/<int:id>/export_pdf')
 def export_pdf(id):
     """pdf export function including formatting pdf layout."""

@@ -145,6 +145,7 @@
 
         <div class="button">
           {% if form_type == "update" %}
+          <a href="/{{stu_id}}/print_preview"><input type="button" value="Print"></a>
           {% set btn_text = "Update" %}
           {% else %}
           {% set btn_text = "Create" %}
