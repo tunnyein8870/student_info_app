@@ -82,7 +82,7 @@
           <div class="category">
             <div class="category-city">
               <label for="city">City</label>
-              <select class="details" id="city" name="city">
+              <select class="city-details" id="city" name="city">
                 {% if form_type == 'update' %}
                 <option value="Yangon" {% if "Yangon"==record[8] %} selected {% endif %}>Yangon</option>
                 <option value="Mandalay" {% if "Mandalay"==record[8] %} selected {% endif %}>Mandalay</option>
@@ -114,7 +114,7 @@
           <!-- category -->
 
           <!-- gender-details Hobby -->
-          <div class="gender-details">
+          <div class="hobby-details">
             <span id="hob" class="details">Hobby</span>
             <input class="details-input" type="checkbox" name="hobby" id="reading" value="reading" {% if
               form_type=='update' and "reading" in soption %} checked {% endif %}>
