@@ -75,12 +75,15 @@ body {
 form .user-details .input-box {
     margin-bottom: 15px;
     width: calc(100% / 2 - 20px);
+    display: flex;
 }
 
 form .input-box span.details {
-    display: block;
+    display: inline-block;
     font-weight: 500;
     margin-bottom: 5px;
+    margin-top: 10px;
+    width: 180px;
 }
 
 .user-details .input-box input {
