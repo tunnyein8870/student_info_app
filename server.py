@@ -255,7 +255,9 @@ def update(id):
             arts = subject[2]
             physics = subject[3]
             year = subject[4]
-            if not maths == '' or arts == '' or physics == '' or year == '':
+            if maths == '' or arts == '' or physics == '' or year == '':
+                pass
+            else:
                 cur.execute(
                 "INSERT INTO subjects \
                     (maths, arts, physics, year, student_id) \
@@ -273,7 +275,7 @@ def update(id):
             physics = subject[3]
             year = subject[4]
             subject_id = subject[0]
-            if not maths == '' or arts == '' or physics == '' or year == '':
+            if not maths == '0' or arts == '0' or physics == '0' or year == '':
                 cur.execute(
                     "UPDATE subjects \
                     SET maths=%s, arts=%s, physics=%s, year=%s \
