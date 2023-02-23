@@ -277,23 +277,24 @@ def update(id):
             physics = subject[3]
             year = subject[4]
             subject_id = subject[0]
-            if maths == '0' or arts == '0' or physics == '0' or year == '':
-                cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
-                mysql.connection.commit()
+            if maths == '' or arts == '' or physics == '' or year == '':
+                pass
             else:
+                print("updating")
                 cur.execute(
                     "UPDATE subjects \
                     SET maths=%s, arts=%s, physics=%s, year=%s \
                     WHERE subject_id=%s",
                     (maths, arts, physics, year, subject_id))
                 mysql.connection.commit()
-            for i, subject in enumerate(json_data):
-                subject_id = subject[0]
-                found = any(subject_id == res_subject[0] for res_subject in result)
-                if not found:
-                    print("delete section works.")
-                    cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
-                mysql.connection.commit()
+        for i, subject in enumerate(json_data):
+            subject_id = subject[0]
+            found = any(subject_id == res_subject[0] for res_subject in result)
+            print(subject_id, found)
+            if not found:
+                print("delete section works.")
+                cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
+            mysql.connection.commit()
     # all student infomation of students table
     f_name, l_name, nrc, email, phone, address, city, gender = [
     request.form.get(field) for field in ['f_name', 'l_name', 'nrc', 'email', 'phone', 'address', 'city', 'gender']]
