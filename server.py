@@ -85,7 +85,9 @@ def create_dynamic_data(studentId):
             arts = front_data['arts'][i] if front_data['arts'][i] is not None else ""
             physics = front_data['physics'][i] if front_data['physics'][i] is not None else ""
             year = front_data['year'][i] if front_data['year'][i] is not None else ""
-            if not maths == '' or arts == '' or physics == '' or year == '':   # check empty string, ''
+            if maths == '' or arts == '' or physics == '' or year == '':   # check empty string, ''
+                pass
+            else:
                 cur.execute(
                 "INSERT INTO subjects \
                     (maths, arts, physics, year, student_id) \
@@ -275,12 +277,16 @@ def update(id):
             physics = subject[3]
             year = subject[4]
             subject_id = subject[0]
-            if not maths == '0' or arts == '0' or physics == '0' or year == '':
+            if maths == '0' or arts == '0' or physics == '0' or year == '':
+                cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
+                mysql.connection.commit()
+            else:
                 cur.execute(
                     "UPDATE subjects \
                     SET maths=%s, arts=%s, physics=%s, year=%s \
                     WHERE subject_id=%s",
                     (maths, arts, physics, year, subject_id))
+                mysql.connection.commit()
             for i, subject in enumerate(json_data):
                 subject_id = subject[0]
                 found = any(subject_id == res_subject[0] for res_subject in result)
