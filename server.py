@@ -290,7 +290,7 @@ def update(id):
         for i, subject in enumerate(json_data):
             subject_id = subject[0]
             found = any(subject_id == res_subject[0] for res_subject in result)
-            print(subject_id, found)
+            # print(subject_id, found)
             if not found:
                 print("delete section works.")
                 cur.execute("DELETE FROM subjects WHERE subject_id=%s", (subject_id,))
@@ -427,10 +427,10 @@ def export_pdf(id):
         y -= 30
     pdf.setFont("Helvetica", 12)
     # students data table
-    x = 280  # right student data
-    y = 550
-    l = 50
-    r = 520
+    x = 280  # x axis
+    y = 550  # y axis
+    l = 50   # width
+    r = 520  # height
     for info in range(len(students_data[:10])):    
         pdf.drawString(x, y, str(students_data[info]))
         y -= 30
@@ -447,13 +447,13 @@ def export_pdf(id):
         pdf.setFont("Helvetica-Bold", 12)
         print(y)
         x = 80
-        y -= 20
+        y -= 35
         subject_info = ["Subject ID", "Maths", "Arts", "Physics", "Year"]
         for title in subject_info:
-            pdf.drawString(x, y, title)
+            pdf.drawString(x, y-10, title)
             x += 100
-        pdf.rect(l, y-25, r, 40, stroke=True, fill=False)
-        y -= 20
+        pdf.rect(l, y-20, r, 30, stroke=True, fill=False)
+        y -= 35
         # subjects data table
         pdf.setFont("Helvetica", 12)
         x_values = [80+(i*100) for i in range(5)]
@@ -463,18 +463,18 @@ def export_pdf(id):
             pdf.rect(l, y-5, r, 20, stroke=True, fill=False)
             y -= 20
     else:
-        pdf.drawCentredString(300, y, "Subjects")
-        pdf.rect(l, y-25, r, 40)
-        # subjects data header
         pdf.setFont("Helvetica-Bold", 12)
+        pdf.drawCentredString(300, y, "Subjects")
+        # pdf.rect(l, y-25, r, 40)
+        # subjects data header
         print(y)
         x = 80
-        y -= 20
+        y -= 35
         subject_info = ["Subject ID", "Maths", "Arts", "Physics", "Year"]
         for title in subject_info:
             pdf.drawString(x, y, title)
             x += 100
-        pdf.rect(l, y-25, r, 40, stroke=True, fill=False)
+        pdf.rect(l, y-10, r, 30, stroke=True, fill=False)
         y -= 20
     pdf.save()
     output.seek(0)
