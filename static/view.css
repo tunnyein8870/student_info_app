@@ -11,6 +11,7 @@ body {
 }
 
 .content-wrapper{
+    height: 480px;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -236,6 +237,15 @@ table.table td i {
 .excel-form form input{
     float: left;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
 
 

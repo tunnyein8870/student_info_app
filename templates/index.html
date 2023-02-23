@@ -154,8 +154,9 @@
           <!-- <a href="/index"><input type="button" value="Clear"></a> -->
         </div>
         <!-- if /update, shows Create Page. if / or /index, shows Clear -->
-        <a href="/">{% if form_type == 'update' %} << Create Page {% else %} Clear {% endif %}</a>
-            <a href="{{ url_for('view_default')}}" style="float: right;">View Student Details >> </a>
+        <a href="/">{% if form_type == 'update' %} << Create Student {% else %} Clear {% endif %}</a>
+        <a href="{{ url_for('view_default')}}" style="float: right; margin-left: 15px;">View Student Details >> </a>
+        <a href="/" style="float: right;">{% if form_type == 'update' %} << Back {% endif %}</a>
       </form>
     </div>
     <hr style="margin-top: 10px;">
@@ -176,5 +177,4 @@
   <script src="/static/dynamic_form.js"></script>
   <script src="/static/message.js"></script>
 </body>
-
 </html>
