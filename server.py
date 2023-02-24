@@ -38,7 +38,7 @@ app.config['ALLOWED_EXTENSIONS'] = set(['jpg', 'jpeg', 'png'])
 mysql = MySQL(app)
 
 
-PERPAGE = 6
+PERPAGE = 7
 
 
 def allowed_file(filename):
