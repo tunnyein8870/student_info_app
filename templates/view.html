@@ -41,13 +41,14 @@
             <a href="/" class="btn btn-light mb-2 rounded-3 mb-lg-0 me-2">&#10133; Add
             </a>
             <form class="d-flex col-lg-3" method="POST">
+
+              <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ keyword }}">
+              </div>
               <div class="nav-item">
                 <a href="{{url_for('view_default')}}" class="btn btn-light rounded-3 me-sm-1 me-lg-3"> <span
                     style="font-weight:bold;color: darkblue; font-size: 16px;">&#x21bb;</span>
                 </a>
-              </div>
-              <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ keyword }}">
               </div>
             </form>
 
@@ -131,26 +132,26 @@
 
     <!-- content-wrapper ends -->
     <!-- bootstrap table ends -->
-
-    <!-- pagination style only starts -->
-    <div class="pagi-left ms-4 mb-3">
-      {% if page > 1 %}
-      <a href="{{ url_for('view', page=page-1) }}">
-        <p>❮❮</p>
-      </a>
-      {% endif %}
-      Page <p>{{page}}</p> of <p>{{total_pages}}</p>
-      {% if page < total_pages %} <a href="{{ url_for('view', page=page+1) }}">
-        <p>❯❯</p></a>
+    <div class="pagination" style="display: flex;" >
+      <!-- pagination style only starts -->
+      <div class="pagi-left ms-4 mb-3">
+        {% if page > 1 %}
+        <a href="{{ url_for('view', page=page-1) }}">
+          <p>❮❮</p>
+        </a>
         {% endif %}
-        <a style="margin-left: 20px;" href="{{ url_for('view', page=1)}}">View First ⭰</a>
-        <a style="margin-left: 20px;" href="{{ url_for('view_last') }}">View Last ⭲</a>
-        <p style="color: black; margin-left: 20px;">Total Records </p>
-        <p> {{ student|length }}</p>
-    </div>
-
-    <div class="pagi-right me-4">
-      <a href="{{ url_for('view_all')}}">View All &#8660;</a>
+        Page <p>{{page}}</p> of <p>{{total_pages}}</p>
+        {% if page < total_pages %} <a href="{{ url_for('view', page=page+1) }}">
+          <p>❯❯</p></a>
+          {% endif %}
+          <a style="margin-left: 20px;" href="{{ url_for('view', page=1)}}">View First ⭰</a>
+          <a style="margin-left: 20px;" href="{{ url_for('view_last') }}">View Last ⭲</a>
+          <p style="color: black; margin-left: 20px;">Total Records </p>
+          <p> {{ student|length }}</p>
+      </div>
+      <div class="pagi-right me-4">
+        <a href="{{ url_for('view_all')}}">View All &#8660;</a>
+      </div>
     </div>
   </div>
 
