@@ -133,17 +133,19 @@ def index():
     if request.method == "POST":
         create_dynamic_data(stu_id)
         cur = mysql.connection.cursor()
-        students = request.form
-        f_name = students['f_name']
-        l_name = students['l_name']
-        nrc = students['nrc']
-        email = students['email']
-        phone = students['phone']
-        address = students['address']
+        f_name, l_name, nrc, email, phone, address, city, gender = [
+            request.form.get(field) for field in ['f_name', 'l_name', 'nrc', 'email', 'phone', 'address', 'city', 'gender']]
+        # students = request.form
+        # f_name = students['f_name']
+        # l_name = students['l_name']
+        # nrc = students['nrc']
+        # email = students['email']
+        # phone = students['phone']
+        # address = students['address']
+        # city = request.form.get('city')
+        # gender = request.form.get('gender')
         opt_hobby = request.form.getlist("hobby")
         hobby = (','.join(opt_hobby),)
-        city = request.form.get('city')
-        gender = request.form.get('gender')
         photo = request.files['photo']
         if photo and allowed_file(photo.filename):
             filename = secure_filename(photo.filename)
