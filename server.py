@@ -135,15 +135,6 @@ def index():
         cur = mysql.connection.cursor()
         f_name, l_name, nrc, email, phone, address, city, gender = [
             request.form.get(field) for field in ['f_name', 'l_name', 'nrc', 'email', 'phone', 'address', 'city', 'gender']]
-        # students = request.form
-        # f_name = students['f_name']
-        # l_name = students['l_name']
-        # nrc = students['nrc']
-        # email = students['email']
-        # phone = students['phone']
-        # address = students['address']
-        # city = request.form.get('city')
-        # gender = request.form.get('gender')
         opt_hobby = request.form.getlist("hobby")
         hobby = (','.join(opt_hobby),)
         photo = request.files['photo']
