@@ -19,6 +19,8 @@ $ py generate_data.py
 # Run app
 $ py server.py or python server.py or python3 server.py
 
+# Dynamic form uses Javascript DOM to control class names.
+
 
 
 
