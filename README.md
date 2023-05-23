@@ -19,7 +19,9 @@ $ py generate_data.py
 # Run app
 $ py server.py or python server.py or python3 server.py
 
-# Dynamic form uses Javascript DOM to control class names.
+$ Dynamic form uses Javascript DOM to control class names.
+## Note! every images uploaded in the form view will be saved in the static/uploads folder.
+
 
 
 
