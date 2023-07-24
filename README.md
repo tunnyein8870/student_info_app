@@ -12,6 +12,8 @@ $ pip install pandas
 $ pip install reportlab
 
 # Create a database and to generate table check the following generate_table file for database customization. For data, check module comments in generate_data file.
+# If you don't want to create, import sql in phpMyAdmin of Mysql.
+
 For fake data: 
 $ py generate_table.py
 $ py generate_data.py
